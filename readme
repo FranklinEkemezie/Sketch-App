@@ -1,0 +1,19 @@
+# TITLE
+Sketch App
+
+# DESCRIPTION
+Sketch app designed using HTML, CSS and JS
+
+# FEATURES
+- Different attractive colours for line with a suitable range of line weights
+- Customizable background colour with auto-generated background on loading
+- Clear screen or just erase your mistakes when needed.
+- Supports both drawing horizontal and vertical lines.
+- Rulers, both horizontal and vertical with a marker indicating the exact position of the cursor.
+- Toggle feature to switch the rulers' dimensions unit from inches to centimetres and vice versa.
+- Displays the exact position in the current unit.
+- Save your sketch for later
+
+# UPCOMING FEATURES
+- Support for drawing diagonal lines.
+- Improved UI/UX designs

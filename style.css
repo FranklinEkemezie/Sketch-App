@@ -1,0 +1,254 @@
+/* Import Google Fonts: Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=OpenSans:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+}
+.active {
+  /* For active elements */
+  border-style: outset !important;
+  outline: 2px solid white !important;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+canvas {
+  position: relative;
+  --offset: 24;
+  left: calc(var(--offset) * 1px);
+}
+
+/* --------------------------------------
+# Nav Bar and its components
+----------------------------------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  width: 75%;
+  flex-wrap: wrap-reverse;
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #456bdc, #b06ab3);
+  border: 4px solid whitesmoke;
+  padding: .8rem 1.6rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08), -2px -2px 8px rgba(0, 0, 0, 0.08);
+  user-select: none;
+}
+.nav .colour-palettes span {
+  display: inline-block;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  margin: 0 2px;
+  background-color: var(--background-color);
+  border: 3px solid white;
+  transition: transform .2s ease-in-out;
+  cursor: pointer;
+}
+.nav .colour-palettes span:hover {
+  transform: scale(1.2);
+}
+.nav .buttons button {
+  outline: none;
+  border: 2px solid whitesmoke;
+  border-radius: 1px;
+  background-color: var(--background-color);
+  color: white;
+  font-weight: 600;
+  font-size: .8rem;
+  padding: .2rem .8rem;
+  transition: background-color .2s ease-in-out;
+  margin: 0 2px;
+  cursor: pointer;
+}
+.nav .buttons button:hover {
+  background-color: var(--background-color-hover);
+}
+.nav .buttons .clear-btn {
+  --background-color:#04d160;
+  --background-color-hover: #02be57; 
+}
+.nav .buttons .save-btn {
+  --background-color: #1474f1;
+  --background-color-hover: #0f65d4;
+}
+.nav .buttons .erase-btn {
+  --background-color: #ee6262;
+  --background-color-hover: #e05a5a;
+}
+.nav .settings {
+  display: flex;
+  align-items: center;
+}
+.nav .settings > * {
+  margin: 0 .2rem;
+}
+.nav .settings .background-color-input {
+  outline: none;
+  border: 0px solid whitesmoke;
+  width: 4rem;
+  height: 2rem;
+}
+.nav .settings .line-weight-input {
+  background: linear-gradient(to right, #000428 0%, #004e92 100%);
+  height: 8px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: ew-resize;
+  border-radius: 5px;
+  accent-color: white;
+  border: 2px solid whitesmoke;
+}
+.nav .settings .line-weight-output {
+  color: white;
+  font-weight: bold;
+  width: 8px;
+}
+.nav .icon img {
+  width: 40px;
+  height: 40px;
+  fill: rgb(205, 217, 228);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.nav .icon img:hover {
+  transform: scale(1.2);
+}
+
+/* ---------------------------------
+# Rulers - horizontal and vertical
+---------------------------------- */
+.rulers .horizontal,
+.rulers .vertical {
+  display: block;
+  position: absolute;
+  background-color: rgba(95, 158, 160, 0.5);
+  --offset: 24;
+  height: calc(var(--offset) * 1px);
+  padding-left: calc(var(--offset) * 1px);
+  bottom: 0;
+  width: 100vw; /* for horizontal ruler */
+  overflow: visible;
+  user-select: none;
+}
+.rulers > .vertical {
+  left: calc(-0.5 * 100vh);
+  width: 100vh;
+  transform: rotateZ(-90deg) translate(calc(50% - (var(--offset) * .5px)), 50%);
+}
+.rulers .mark {
+  display: inline-block;
+  text-align: right;
+  font-size: smaller;
+  vertical-align: top;
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+  height: 60%;
+  padding-right: 2px;
+}
+.rulers .mark:last-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.8);
+}
+.rulers .vertical .mark {
+  vertical-align: bottom;
+}
+.rulers > * .marker {
+  position: absolute;
+  border: 1px dashed black;
+  width: 1px;
+  height: 100%;
+  left: calc(var(--offset) * 1px + var(--left));
+}
+.rulers .horizontal .marker {
+  --left: 0;
+}
+.rulers .vertical .marker {
+  --left: 0;
+}
+.rulers .unit-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: .8rem;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+  user-select: none;
+}
+.rulers .position-display {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: aliceblue;
+  border-bottom-left-radius: 2px;
+  padding: 2px 8px;
+  user-select: none;
+  font-weight: 600;
+}
+
+/* ----------------------------------------
+# Info box modal container
+----------------------------------------- */
+.info-box-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+}
+.info-box-container.show {
+  display: flex;
+}
+.info-box-container .info-box {
+  padding: 2rem;
+  padding-top: 1rem;
+  width: 100%;
+  max-width: 640px;
+  height: fit-content;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e%3cpath fill='rgba(0, 0, 0, 0.04)' d='M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3H344c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm0-96c17.7 0 32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32zM288 96c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm96 96c17.7 0 32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32z'/%3e%3c/svg%3e") no-repeat center, linear-gradient(white, white);
+  background-size: 40%;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.info-box-container .info-box h1 {
+  text-align: center;
+}
+.info-box-container .info-box ul {
+  text-align: justify;
+  padding: 0 1rem;
+}
+.info-box-container .info-box #info {
+  accent-color: #0f65d4;
+}
+.info-box-container .info-box button {
+  position: relative;
+  padding: .4rem .8rem;
+  background-color: #1474f1;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  border-radius: 1px;
+  float: right;
+}
+.info-box-container .info-box button:hover {
+  color: white;
+  background-color: #0f65d4;
+}

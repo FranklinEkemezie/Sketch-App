@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Sketch app designed using HTML, CSS and JS">
+  <meta name="keywords" content="Sketch app, drawing app, sketch, HTML, CSS, JS, web app, tutorials, projects, projects for beginners, canvas">
+
+  <!-- OG Meta tags -->
+  <meta property="og:title" content="Sketch App"> 
+  <meta propery="og:url" content="./index.html">
+  <meta property="og:image" content="./demo3.png">
+  <meta property="og:description" content="Sketch app designed using HTML, CSS and JS">
+  <meta property="og:type" content="article">  
+
+  <title>Sketch App &#x1F3A8;</title>
+
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Drawing Canvas -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Navigation menu -->
+  <div class="nav">
+    <div class="colour-palettes">
+      <span data-colour="black"></span>
+      <span data-colour="red"></span>
+      <span data-colour="orange"></span>
+      <span data-colour="blue"></span>
+      <span data-colour="purple"></span>
+      <span data-colour="yellowgreen"></span>
+      <span data-colour="yellow"></span>
+      <span data-colour="white"></span>
+    </div>
+    <div class="buttons">
+      <button class="clear-btn">Clear</button>
+      <button class="save-btn">Save</button>
+      <button class="erase-btn">Erase</button>
+    </div>
+    <div class="settings">
+      <input type="color" name="" id="" class="background-color-input">
+      <input type="range" name="" id="" class="line-weight-input" min="0" max="10" step="1" value="5">
+      <output class="line-weight-output"></output>
+    </div>
+    <div class="icon">
+      <img src="favicon.png" alt="">
+    </div>
+  </div>
+
+  <!-- Rulers -->
+  <div class="rulers">
+    <div class="horizontal">
+      <div class="marker"></div>
+    </div>
+    <div class="vertical">
+      <div class="marker"></div>
+    </div>
+    <!-- Unit display and position co-ordinate display -->
+    <span class="unit-display"></span>
+    <span class="position-display"></span>
+  </div>
+
+  <!-- Info Box -->
+  <div class="info-box-container">
+    <div class="info-box">
+      <h1>Welcome to Sketch App &#x1F3A8;</h1>
+      <h2>How-To</h2>
+      <ul>
+        <li>Drag the mouse to draw, hold down <kbd><b>Ctrl</b></kbd> to draw a horizontal line and <kbd><b>Shift</b></kbd> to draw a vertical line</li>
+        <li>The colour palette comprising of eight different colours allows you to choose the colour of the line.</li>
+        <li>A random background colour is used for the canvas automatically, use the colour box to customize it.</li>
+        <li>Use the slider to set the weight of the line: Default is 5 (<i>medium</i>)</li>
+        <li>The <b>Clear</b> button clears the entire screen leaving it blank</li>
+        <li>To erase a small portion of the drawing use the <b>Erase</b> button</li>
+        <li>Clicking the <b>Save</b> button downloads the sketch in <b>png</b> format.</li>
+        <li>There are rulers, horizontally and vertically to aid in making neater sketch.</li>
+        <li>Down to the left, where both rulers meet indicates the current unit, you can click on it to toggle between inches and centimetres.</li>
+      </ul>
+      <p>
+        <input type="checkbox" name="" id="info"> <label for="info">Always show on startup</label><br>
+        <strong>NB:</strong> <i>You can always click on the Colour Palette icon to display the Info Box when needed</i></p>
+      <button>OK, Got it</button>
+    </div>
+  </div>
+</body>
+</html>
